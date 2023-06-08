@@ -6,6 +6,8 @@ router.post('/', newVenta)
 
  // Obtener todos los vehiculos
  router.get('/', viewVentas)
+ 
+
 
  // Obtener vehiculo por id
  router.get('/:id', getVenta)

@@ -4,10 +4,10 @@ import {client} from '../helpers/mqtt.js';
 
 const newVenta = async (req, res, next) => {
     const data = req.body;
-    const user = await Users.find({serialNumber: data.payload.serialNumber});
+    const user = await Users.find({_id: data.payload._id});
     console.log(user)
     try {
-        client.on('message', async function (topic, message, packet) {
+        client.on('message', async function (topic, message) {
                 console.log(`Mensaje recibido desde ${topic}: ${message.toString()}`);
                 let topic_splitt = topic.split("/");
                 let query = topic_splitt[1];
@@ -37,6 +37,7 @@ const viewVentas = async (req, res, next) =>{
         next();
     }
 }
+
 
  const getVenta = async (req, res, next) =>{
      try {

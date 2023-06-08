@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
 import Users from "../models/Users.js";
+import dotenv from 'dotenv'
+dotenv.config()
+
 
 const checkAuth = async (req, res, next) => {
     
@@ -7,7 +10,7 @@ const checkAuth = async (req, res, next) => {
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try {
             token = req.headers.authorization.split(" ")[1];
-            const decoded = jwt.verify(token, 'Super palabra');
+            const decoded = jwt.verify(token, process.env.SECRET_JWT);
             req.usuario = await Users.findById(decoded.id).select('-password -__v -token -createdAt -updatedAt');
             console.log(req.usuario)
             return next();

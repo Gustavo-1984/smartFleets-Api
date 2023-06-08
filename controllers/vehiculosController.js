@@ -29,8 +29,10 @@ const viewVehiculos = async (req, res, next) =>{
 
  const getVehiculo = async (req, res, next) =>{
      try {
-         const vehiculo = await Vehiculos.findById(req.params.id);
+    
+         const vehiculo = await Vehiculos.findById(req.params._id);
          res.json(vehiculo)
+         console.log(vehiculo)
      } catch (error) {
          console.log(error);
          next();
@@ -39,10 +41,7 @@ const viewVehiculos = async (req, res, next) =>{
 
  const updateVehiculo = async (req, res, next) =>{
      try {
-         const vehiculo = await Vehiculos.findOneAndUpdate({_id: req.params.id}, 
-             req.body,{
-                 new: true
-         });
+         const vehiculo = await Vehiculos.findOneAndUpdate({_id: req.params._id}, req.body,{new: true});
          res.json(vehiculo)
      } catch (error) {
          console.log(error);

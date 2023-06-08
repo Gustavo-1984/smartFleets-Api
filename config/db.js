@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
-
+import dotenv from 'dotenv'
+dotenv.config()
 
 const conectDB = async () => {
     try {
-        const connection = await mongoose.connect('mongodb://localhost:27017/rest_api', {
+        const connection = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
         })
         const url = `${connection.connection.host}/${connection.connection.port}`
         console.log(`MongoDB conectado en ${url}`)

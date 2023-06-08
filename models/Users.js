@@ -22,18 +22,13 @@ const usersSchema = mongoose.Schema({
         trim: true,
         
     },
-    serialNumber:{
-        type: Array,
-        trim: true,
-        unique: true
-    },
+   
     vehiculos: [{type: mongoose.Types.ObjectId, ref: 'Vehiculos'}],
     ventas: [{type: mongoose.Types.ObjectId, ref: 'Ventas'}],
-},
-{
+    devices: [{type: mongoose.Types.ObjectId, ref: 'Devices'}]
+ },{
     timestamps: true
-}
-);
+ });
 usersSchema.pre('save', async function(next) {
     if (!this.isModified('password')) {
         next();

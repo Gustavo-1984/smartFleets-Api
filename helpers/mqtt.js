@@ -1,8 +1,10 @@
 import mqtt from 'mqtt';
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const options = {
     port: 1883,
-    host: '192.168.1.74',
+    host: '161.35.230.61',
     clientId: 'mqttjs_' + Math.random().toString(32),
     username: 'admin',
     password: 'public',
@@ -14,7 +16,7 @@ export const options = {
     encoding: 'utf8'
 }
 
-export const client = mqtt.connect("mqtt://192.168.1.74", options);
+export const client = mqtt.connect(process.env.MQTT_URI, options);
 
 client.on('connect', function () {
     console.log("Conexion exitosa")
